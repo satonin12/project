@@ -1,0 +1,5 @@
+{
+  "port": 5000,
+  "jwrSecret": "vsatonin is Argyash",
+  "mongoUri": "mongodb+srv://vsatonin:vsatonin12@cluster0-w7alq.gcp.mongodb.net/app?retryWrites=true&w=majority"
+}
