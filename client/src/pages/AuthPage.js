@@ -1,36 +1,38 @@
-import React, {useState, useEffect} from "react";
-import {useHttp} from '../hooks/http.hook'
-import {useMessage} from '../hooks/message.hook'
+import React, { useState, useEffect } from "react";
+import { useHttp } from "../hooks/http.hook";
+import { useMessage } from "../hooks/message.hook";
 
 export const AuthPage = () => {
-
-  const {loading, request, error, clearError} = useHttp()
+  const message = useMessage();
+  const { loading, request, error, clearError } = useHttp();
   const [form, setForm] = useState({
-    email: '', password: ''
-  })
-  const message = useMessage()
-
-  useEffect(()=>{
-    console.log('Error', error)
-    message(error)
-    clearError()
-  }, [error, message, clearError])
+    email: "",
+    password: ""
+  });
 
   useEffect(() => {
-    window.M.updateTextFields()
-  }, [])
+    // console.log('Error', error)
+    message(error);
+    clearError();
+  }, [error, message, clearError]);
+
+  useEffect(() => {
+    window.M.updateTextFields();
+  }, []);
 
   const changeHandler = event => {
-    setForm({ ...form, [event.target.name]: event.target.value })
-  }
+    setForm({ ...form, [event.target.name]: event.target.value });
+    console.log({ ...form });
+  };
 
   const registerHandler = async () => {
     try {
-      const data = await request('/api/auth/register', 'POST', {...form})
-      console.log('Data', data)
-      // message(data.message)
+      console.log({ ...form });
+      const data = await request("/api/auth/register", "POST", { ...form });
+      console.log("Data", data);
+      message(data.message);
     } catch (e) {}
-  }
+  };
 
   return (
     <div id="login-page" className="row">
@@ -43,28 +45,40 @@ export const AuthPage = () => {
           </div>
           <div className="row margin">
             <div className="input-field col s12">
-              <input id="username" type="text" onChange={changeHandler}/>
-              <label htmlFor="username" className="center-align">email</label>
+              <input
+                id="email"
+                type="text"
+                name="email"
+                onChange={changeHandler}
+              />
+              <label htmlFor="username" className="center-align">
+                email
+              </label>
             </div>
           </div>
           <div className="row margin">
             <div className="input-field col s12">
-              <input id="password" 
-                     type="password" 
-                     onChange={changeHandler}/>
+              <input
+                id="password"
+                type="password"
+                name="password"
+                onChange={changeHandler}
+              />
               <label htmlFor="password">Пароль</label>
             </div>
           </div>
 
           <div className="card-action">
-            <button className="btn green accent-2" 
-                    style={{ marginRight: 10 }}
-                    disabled={loading}>
+            <button
+              className="btn green accent-2"
+              style={{ marginRight: 10 }}
+              disabled={loading}>
               Войти
             </button>
-            <button className="btn blue-grey lighten-2 black-text" 
-                    onClick={registerHandler}
-                    disabled={loading}>
+            <button
+              className="btn blue-grey lighten-2 black-text"
+              onClick={registerHandler}
+              disabled={loading}>
               Регистрация
             </button>
           </div>
