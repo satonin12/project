@@ -8,31 +8,36 @@ export const AuthPage = () => {
   const [form, setForm] = useState({
     email: "",
     password: ""
-  });
+  })
 
   useEffect(() => {
-    // console.log('Error', error)
     message(error);
     clearError();
-  }, [error, message, clearError]);
+  }, [error, message, clearError])
 
   useEffect(() => {
     window.M.updateTextFields();
-  }, []);
+  }, [])
 
   const changeHandler = event => {
     setForm({ ...form, [event.target.name]: event.target.value });
-    console.log({ ...form });
-  };
+    console.log({...form})
+  }
 
   const registerHandler = async () => {
     try {
-      console.log({ ...form });
-      const data = await request("/api/auth/register", "POST", { ...form });
-      console.log("Data", data);
+      const data = await request("/api/auth/register", "POST", { ...form })
       message(data.message);
     } catch (e) {}
-  };
+  }
+
+  const loginHandler = async () => {
+    try {
+      const data = await request("/api/auth/login", "POST", { ...form })
+      console.log(data)
+      // auth.login(data.token, data.user.id)
+    } catch (e) {}
+  }
 
   return (
     <div id="login-page" className="row">
@@ -72,6 +77,7 @@ export const AuthPage = () => {
             <button
               className="btn green accent-2"
               style={{ marginRight: 10 }}
+              onClick={loginHandler}
               disabled={loading}>
               Войти
             </button>
