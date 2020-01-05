@@ -1,13 +1,13 @@
 import React from 'react'
-import {Switch, Route, Redirect} from 'react-router-dom'
-import { AuthPage } from './pages/AuthPage'
+import { Switch, Route, Redirect } from 'react-router-dom'
+import { LinksPage } from './pages/LinksPage'
 import { CreatePage } from './pages/CreatePage'
 import { DetailPage } from './pages/DetailPage'
-import { LinksPage } from './pages/LinksPage'
+import { AuthPage } from './pages/AuthPage'
 
-export const useRoutes = isAuthenticated =>{
-  if(isAuthenticated){
-    return(
+export const useRoutes = isAuthenticated => {
+  if (isAuthenticated) {
+    return (
       <Switch>
         <Route path="/links" exact>
           <LinksPage />
@@ -18,16 +18,17 @@ export const useRoutes = isAuthenticated =>{
         <Route path="/detail/:id">
           <DetailPage />
         </Route>
-        <Redirect to="/create"/>
+        <Redirect to="/create" />
       </Switch>
     )
   }
+
   return (
     <Switch>
       <Route path="/" exact>
-        <AuthPage/>
+        <AuthPage />
       </Route>
-      <Redirect to="/"/>
+      <Redirect to="/" />
     </Switch>
   )
 }
