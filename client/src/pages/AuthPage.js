@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { useHttp } from '../hooks/http.hook'
 import { useMessage } from '../hooks/message.hook'
 import { AuthContext } from '../context/AuthContext'
+import '../index.css'
 
 export const AuthPage = () => {
   const auth = useContext(AuthContext)
@@ -40,8 +41,8 @@ export const AuthPage = () => {
   }
 
   return (
-    <div id="login-page" className="row">
-      <div className="col s12 m6 l4 z-depth-4 card-panel border-radius-6 login-card bg-opacity-8">
+    <div id="login-page" className="auth" class="container-auth fon-auth">
+      <div className="card-panel hoverable">
         <form className="login-form">
           <div className="row">
             <div className="input-field col s12">
@@ -75,7 +76,7 @@ export const AuthPage = () => {
 
           <div className="card-action">
             <button
-              className="btn green accent-2"
+              className="btn green accent-2 hoverable black-text"
               style={{ marginRight: 10 }}
               onClick={loginHandler}
               disabled={loading}
@@ -83,7 +84,7 @@ export const AuthPage = () => {
               Войти
             </button>
             <button
-              className="btn blue-grey lighten-2 black-text"
+              className="btn blue lighten-2 hoverable black-text"
               onClick={registerHandler}
               disabled={loading}
             >

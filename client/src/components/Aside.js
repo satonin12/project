@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useHttp } from '../hooks/http.hook'
 import { NumList } from './NumList'
+import '../index.css'
 
 export const Aside = () => {
   const [form, setForm] = useState({ email: '' })
@@ -21,19 +22,22 @@ export const Aside = () => {
     } catch (error) {}
   }
   return (
-    <div className="justify-content-left" style={{ marginLeft: 0 }}>
-      <aside className="sidenav-main nav-expanded nav-lock nav-collapsible sidenav-light sidenav-active-square">
-        <div className="brand-sidebar">
-          <div className="input-field col s14">
-            <input
+    <div class="container-creat-1">
+      <aside class="">
+        <div class="">
+          <div class="">
+            {/* <label for="email" class="">Введите имя/email</label> */}
+            {/* <input 
+              class="input"
               id="email"
               type="text"
               name="email"
+              value="Введите имя/email"
               onChange={changeHandler}
-            />
-            <label htmlFor="email">Введите имя/email</label>
+            /> */}
+            <input type="text" id="fname" name="fname" placeholder="John" />
             <button
-              className="btn white accent-2 black-text"
+              className="btn white black-text hoverable"
               style={{ marginRight: 10 }}
               onClick={listHandler}
               disabled={loading}

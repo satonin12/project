@@ -4,7 +4,7 @@ import { Aside } from '../components/Aside'
 import Call from '../components/Call'
 export const CreatePage = () => {
   return (
-    <div className="row justify-content-center mt-2">
+    <div class="container-create fon-create">
       <Aside />
       <UserMediaProvider constraints={{ audio: true, video: true }}>
         <Call />

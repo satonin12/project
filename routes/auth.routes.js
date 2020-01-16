@@ -8,15 +8,10 @@ const router = Router()
 
 // /api/auth/create
 router.post('/create', async (req, res) => {
-  // console.log('я сделаль')
   try {
     const find = req.body
-    // console.log(find)
-
     const re = new RegExp(find.email + '\\w+', 'i')
-    // console.log(re)
     const users = await User.find({ email: re }, { email: 1, _id: 0 })
-    // console.log(users)
 
     if (!users) {
       return res.status(401).json({ message: 'не все хорошо' })
