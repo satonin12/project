@@ -1,1 +1,67 @@
 @import "~materialize-css/dist/css/materialize.min.css";
+
+.auth {
+  text-align: center;
+}
+.panel {
+  display: flex;
+  width: 100%;
+  background-image: url(img/fon4.gif);
+  background-size: cover;
+}
+.container-auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.fon-auth {
+  background-image: url(img/fon5.gif);
+  background-size: cover;
+}
+.fon-create {
+  background: rgb(20, 148, 187);
+}
+.container-create {
+  display: flex;
+  align-items: left;
+  text-align: center;
+  height: 100vh;
+}
+.container-creat-1 {
+  /* border-right: 2mm solid black; */
+  flex-grow: 1;
+}
+.container-creat-2 {
+  flex-grow: 10;
+}
+.exit {
+  background: rgb(33, 193, 204);
+  color: white;
+  width: 100%;
+  border-left: 2mm solid rgb(24, 146, 155);
+}
+.exit:hover {
+  background: white;
+  color: black;
+  border-left: 2mm solid rgb(148, 148, 148);
+ }
+ .fgreen {
+  background: rgb(33, 193, 204);
+  /* border-bottom: 2mm solid rgb(13, 148, 92); */
+ }
+
+#fname { 
+  width: 100%;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #555;
+  outline: none;
+  background-color: rgb(10, 119, 134);
+}
+#fname:focus {
+  background-color: lightblue;
+}
+::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}

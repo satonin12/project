@@ -27,14 +27,8 @@ function ButtonCall() {
 
   return (
     <div>
-      <button className="btn green accent-2 black-item">Вызвать</button>
+      <button class="btn accent-2 black-item hoverable">Вызвать</button>
     </div>
   )
-}
-
-// ButtonCall.propTypes = {
-//   username: PropTypes.string.isRequired,
-//   stream: PropTypes.object
-// };
-
 export default ButtonCall
+

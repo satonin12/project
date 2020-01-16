@@ -8,7 +8,7 @@ export const CreatePage = () => {
   const un = useContext(UserName)
 
   return (
-    <div>
+    <div class="container-create fon-create">
       <Aside />
       {/* { un.call && */}
       <UserMediaProvider constraints={{ audio: true, video: true }}>

@@ -10,14 +10,6 @@ app.use(proxy('/api/*', { target: 'http://localhost:5000' }))
 
 app.use('/api/auth', require('./routes/auth.routes'))
 
-//TODO or require('./video.js')
-// app.use('/create', function(req, res) {
-//   console.log('я сделаль')
-//   const users = User.find({email}).toArray(function(err, clients) {
-//     if(err) return res.status(400)
-//     console.log(clients)
-//   })
-// })
 const PORT = config.get('port') || 5000
 
 async function start() {
