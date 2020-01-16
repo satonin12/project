@@ -1,8 +1,9 @@
-import React, { useRef, useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import { UserMediaError, useUserMedia } from '@vardius/react-user-media'
+// import Video from "components/Video";
+// import Call from './Call'
 
-function Call() {
+function Participant() {
   const video = React.createRef()
   navigator.mediaDevices
     .getUserMedia({ video: true, audio: true })
@@ -15,4 +16,8 @@ function Call() {
   return <video autoPlay id="video" width="120" height="120" ref={video} />
 }
 
-export default Call
+// Participant.propTypes = {
+//   stream: PropTypes.object
+// };
+
+export default Participant

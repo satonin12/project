@@ -23,6 +23,7 @@ export const AuthPage = () => {
 
   const changeHandler = event => {
     setForm({ ...form, [event.target.name]: event.target.value })
+    // console.log(form)
   }
 
   const registerHandler = async () => {
