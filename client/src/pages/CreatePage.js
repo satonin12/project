@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react'
-import { UserMediaProvider } from '@vardius/react-user-media'
-import { Aside } from '../components/Aside'
-import Call from '../components/Call'
-import { UserName } from '../context/UserName'
-import {v1 as uuid} from 'uuid'
+// import { UserMediaProvider } from '@vardius/react-user-media'
+// import { Aside } from '../components/Aside'
+// import Call from '../components/Call'
+// import { UserName } from '../context/UserName'
+import { v1 as uuid } from 'uuid'
 
 export const CreatePage = props => {
   console.log(props)
@@ -12,15 +12,15 @@ export const CreatePage = props => {
   const newRoomHandler = async () => {
     const id = uuid()
     console.log(id)
-    props.history.push('/room/${id}')
+    props.history.push(`/room/${id}`)
   }
 
   return (
-    <div class="container-create fon-create">
-      <div class="container-creat-1">
-        <aside class="">
-          <div class="">
-            <div class="">
+    <div className="container-create fon-create">
+      <div className="container-creat-1">
+        <aside className="">
+          <div className="">
+            <div className="">
               <input
                 type="text"
                 id="fname"

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { NavLink, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext'
 import '../index.css'
 
@@ -21,7 +21,7 @@ export const Navbar = () => {
           {/* <li><NavLink to="/create">Создать</NavLink></li> */}
           {/* <li><NavLink to="/links">Ссылки</NavLink></li> */}
           <li>
-            <a href="/" onClick={logoutHandler} class="exit">
+            <a href="/" onClick={logoutHandler} className="exit">
               Выйти
             </a>
           </li>

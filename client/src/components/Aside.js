@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { Redirect } from 'react-router-dom';
-import { useHttp } from '../hooks/http.hook'
-import { NumList } from './NumList'
+// import { Redirect } from 'react-router-dom';
+// import { useHttp } from '../hooks/http.hook'
+// import { NumList } from './NumList'
 import {v4 as uuidv4} from 'uuid'
 
 import '../index.css'

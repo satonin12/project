@@ -7,7 +7,8 @@ import { AuthPage } from './pages/AuthPage'
 import { createBrowserHistory } from 'history'
 
 export const useRoutes = isAuthenticated => {
-  if (isAuthenticated) {
+  if (1) {
+    // if (isAuthenticated) {
     return (
       <BrowserRouter>
         <Switch>

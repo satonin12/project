@@ -15,6 +15,7 @@ const Container = styled.div`
 const StyledVideo = styled.video`
   height: 40%;
   width: 50%;
+  border: 1px solid red;
 `
 
 const Video = props => {
@@ -37,12 +38,16 @@ const videoConstraints = {
 export const CallRoom = (props) => {
   const [peers, setPeers] = useState([])
   const socketRef = useRef()
-  const userVideo = useRef()
+  const userVideo = useRef(null)
   const peersRef = useRef([])
   const roomID = props.match.params.roomID
 
   useEffect(() => {
-    socketRef.current = io.connect('/')
+    console.log(socketRef)
+    socketRef.current = io.connect('http://localhost:5000', {
+      withCredentials: true,
+    })
+
     navigator.mediaDevices
       .getUserMedia({ video: videoConstraints, audio: true })
       .then(stream => {

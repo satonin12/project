@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react'
 import ButtonCall from './ButtonCall'
 import { UserName } from '../context/UserName'
-import {
-  UserMediaError,
-  useUserMediaFromContext,
-} from '@vardius/react-user-media'
+// import {
+//   UserMediaError,
+//   useUserMediaFromContext,
+// } from '@vardius/react-user-media'
 
 //TODO: add class="collection-item active" on li active click or CSS
 
