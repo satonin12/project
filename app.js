@@ -12,8 +12,7 @@ const PORT = config.get('port') || 5000
 const app = express()
 
 app.use(express.json({ extended: true }))
-// app.use(proxy('/api/*', { target: 'http://localhost:5000' }))
-// app.use(proxy('/socket.io/*', { target: 'http://localhost:5000' }))
+app.use(proxy('/api/*', { target: 'http://localhost:5000' }))
 app.use('/api/auth', require('./routes/auth.routes'))
 
 const server = _http.createServer(app)

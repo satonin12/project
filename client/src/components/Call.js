@@ -9,6 +9,12 @@ function Call() {
       video.current.play()
     }
   })
-  return <div class="panel container-creat-2"><div class="panel video"><video autoPlay id="video" width="400vh" height="300vh" ref={video} /></div></div>
+  return (
+    <div class="panel container-creat-2">
+      <div class="panel video">
+        <video autoPlay id="video" width="400vh" height="300vh" ref={video} />
+      </div>
+    </div>
+  )
 }
 export default Call

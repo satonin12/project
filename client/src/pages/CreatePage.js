@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React from 'react'
 // import { UserMediaProvider } from '@vardius/react-user-media'
 // import { Aside } from '../components/Aside'
 // import Call from '../components/Call'

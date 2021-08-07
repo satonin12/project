@@ -4,7 +4,6 @@ import { LinksPage } from './pages/LinksPage'
 import { CreatePage } from './pages/CreatePage'
 import { CallRoom } from './pages/CallRoom'
 import { AuthPage } from './pages/AuthPage'
-import { createBrowserHistory } from 'history'
 
 export const useRoutes = isAuthenticated => {
   if (1) {

@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import io from 'socket.io-client'
 import Peer from 'simple-peer'
 import styled from 'styled-components'
@@ -35,7 +35,7 @@ const videoConstraints = {
   width: window.innerWidth / 2,
 }
 
-export const CallRoom = (props) => {
+export const CallRoom = props => {
   const [peers, setPeers] = useState([])
   const socketRef = useRef()
   const userVideo = useRef(null)
