@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.2.1",
     "@vardius/react-user-media": "^1.0.1",
     "classnames": "^2.2.6",
+    "lottie-react": "^2.1.0",
     "materialize-css": "^1.0.0-rc.2",
     "peerjs": "^1.2.0",
     "react": "^16.12.0",
@@ -17,10 +18,11 @@
     "react-peer-data": "^1.0.5",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
-    "uuid": "^8.3.2",
     "simple-peer": "9.6.2",
     "socket.io-client": "^2.3.0",
-    "styled-components": "^5.1.0"
+    "styled-components": "^5.1.0",
+    "swiper": "^6.8.1",
+    "uuid": "^8.3.2"
   },
   "scripts": {
     "start": "react-scripts start",

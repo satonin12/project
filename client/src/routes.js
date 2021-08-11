@@ -2,12 +2,13 @@ import React from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import { LinksPage } from './pages/LinksPage'
 import { CreatePage } from './pages/CreatePage'
+import { LoginPage } from './pages/LoginPage/LoginPage'
 import { CallRoom } from './pages/CallRoom'
 import { AuthPage } from './pages/AuthPage'
 
 export const useRoutes = isAuthenticated => {
-  if (1) {
-    // if (isAuthenticated) {
+  // if (1) {
+  if (isAuthenticated) {
     return (
       <BrowserRouter>
         <Switch>
@@ -23,7 +24,7 @@ export const useRoutes = isAuthenticated => {
   return (
     <Switch>
       <Route path="/" exact>
-        <AuthPage />
+        <LoginPage />
       </Route>
       <Redirect to="/" />
     </Switch>

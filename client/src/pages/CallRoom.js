@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import io from 'socket.io-client'
 import Peer from 'simple-peer'
 import styled from 'styled-components'
+import {useMessage} from '../hooks/message.hook'
 
 const Container = styled.div`
   padding: 20px;
@@ -41,6 +42,7 @@ export const CallRoom = props => {
   const userVideo = useRef(null)
   const peersRef = useRef([])
   const roomID = props.match.params.roomID
+  const message = useMessage()
 
   useEffect(() => {
     console.log(socketRef)
@@ -80,6 +82,15 @@ export const CallRoom = props => {
           const item = peersRef.current.find(p => p.peerID === payload.id)
           item.peer.signal(payload.signal)
         })
+      })
+      .catch(err => {
+        // обработка ошибки
+        const errMessage = err.message
+        console.log(errMessage)
+
+        if(errMessage === 'The object can not be found here.') {
+          message('Не найдены медиа-устройства! Пожалуйста подключите web-камеру и микрофон и попробуйте ещё раз')
+        }
       })
   }, [])
 
