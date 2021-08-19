@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 // import { UserMediaProvider } from '@vardius/react-user-media'
 // import { Aside } from '../components/Aside'
 // import Call from '../components/Call'
 // import { UserName } from '../context/UserName'
 import { v1 as uuid } from 'uuid'
+import { AuthContext } from '../context/AuthContext'
+// import { useAuth } from '../hooks/auth.hook'
 
 export const CreatePage = props => {
-  console.log(props)
-  console.log(props.history)
+  // const contextUser = useContext(AuthContext)
+  // console.log(contextUser)
 
   const newRoomHandler = async () => {
     const id = uuid()

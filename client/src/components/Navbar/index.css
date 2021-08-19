@@ -1,0 +1,131 @@
+header {
+  width: auto;
+  margin: 0 auto;
+  height: inherit;
+  padding: 0px 100px;
+}
+.HeaderNav {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+.HeaderNavBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.headerNavBar_item {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+.HeaderNavBar .logo{
+  display: contents;
+}
+.HeaderNavBar .logo img {
+  margin-left: 20px;
+}
+.HeaderNavBar--title {
+  padding-right: 15px;
+}
+.TopNabBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  position: relative;
+  padding-left: 10px;
+}
+.TopNabBtn:hover {
+  background: #F1F2F4;
+}
+.TopNabBtn__profileName {
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+  cursor: pointer;
+
+  margin-right: 10px;
+}
+.TopNabBtn__profileImage {
+  margin: 0;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.TopNavBtn__ArrowDown {
+  margin: 7px 10px 0px 10px;
+  cursor: pointer;
+}
+#top_profile_menu {
+  visibility: hidden;
+  opacity: 0;
+
+  padding: 5px 10px;
+}
+.top_profile_menu {
+  width: auto;
+  max-width: 230px;
+  min-width: 206px;
+  top: 48px;
+
+  background: #AFBBE3;
+  border: 1px solid #DCE1E6;
+  padding: 4px 0px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.top_profile_menu a:hover {
+  background: #94adff;;
+}
+.top_profile_menu_row {
+  display: flex;
+  align-items: center;
+  padding: 8px 15px 8px;
+  text-decoration: none;
+}
+.top_profile_menu_img {
+  border: 0;
+  border-radius: 17px;
+  margin-right: 9px;
+  cursor: pointer;
+}
+.top_profile_menu_right {
+  max-width: 165px;
+  color: black;
+}
+.top_profile_menu_name {
+  margin-bottom: 2px;
+
+  font-size: 13px;
+  line-height: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+}
+.top_profile_menu_descr {
+  font-size: 12px;
+  line-height: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+}
+.top_profile_mrow {
+  display: block;
+  white-space: nowrap;
+  position: relative;
+  height: 30px;
+  line-height: 30px;
+  color: black;
+  cursor: pointer;
+}
+.shown {
+  position: absolute;
+  z-index: 10;
+  transition: opacity 100ms linear,top 100ms linear,visibility 100ms linear;
+}

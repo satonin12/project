@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useRef } from 'react'
 import { useHttp } from '../../hooks/http.hook'
 import { useMessage } from '../../hooks/message.hook'
 import { AuthContext } from '../../context/AuthContext'
@@ -30,13 +30,21 @@ export const LoginPage = () => {
   SwiperCore.use([Autoplay, Pagination, Navigation])
 
   const [showPassword, setShowPassword] = useState(0)
+  const [switchToLogin, setSwitchToLogin] = useState(true)
   const auth = useContext(AuthContext)
   const message = useMessage()
   const { loading, request, error, clearError } = useHttp()
   const [form, setForm] = useState({
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
   })
+
+  const input_firstName = useRef(null)
+  const input_lastName = useRef(null)
+  const input_email = useRef(null)
+  const input_password = useRef(null)
 
   useEffect(() => {
     message(error)
@@ -47,14 +55,36 @@ export const LoginPage = () => {
     window.M.updateTextFields()
   }, [])
 
+  /**
+   * Ранее state менялся при событии onChange на все input формы
+   * теперь же используются ф-я inputsToObject и неконтроллируемые input
+   */
   const changeHandler = event => {
-    setForm({ ...form, [event.target.name]: event.target.value })
+    event.persist()
+    const { name, value } = event.target
+
+    // было
+    // setForm({ ...form, [event.target.name]: event.target.value })
+
+    // стало
+    setForm(prevState => ({
+      ...prevState,
+      [name]: value,
+    }))
+
     console.log(form)
   }
 
   const registerHandler = async () => {
     try {
-      const data = await request('/api/auth/register', 'POST', { ...form })
+      const inputsForm = inputsToObject([
+        input_firstName.current,
+        input_lastName.current,
+        input_email.current,
+        input_password.current,
+      ])
+
+      const data = await request('/api/auth/register', 'POST', inputsForm)
       console.log(data)
       message(data.message)
     } catch (e) {}
@@ -62,9 +92,35 @@ export const LoginPage = () => {
 
   const loginHandler = async () => {
     try {
-      const data = await request('/api/auth/login', 'POST', { ...form })
-      auth.login(data.token, data.userId)
+      const inputsForm = inputsToObject([
+        input_firstName.current,
+        input_lastName.current,
+        input_email.current,
+        input_password.current,
+      ])
+
+      console.log(inputsForm)
+
+      const data = await request('/api/auth/login', 'POST', inputsForm)
+      console.log(data)
+      auth.login(data.token, data.userId, data.firstName, data.lastName)
     } catch (e) {}
+  }
+
+  const switchToLoginHandler = event => {
+    setSwitchToLogin(prevState => (prevState = !prevState))
+  }
+
+  const inputsToObject = inputs => {
+    let obj = {}
+
+    inputs.map(ele => {
+      if(!!ele) {
+        obj[ele.name] = ele.value
+      }
+    })
+
+    return obj
   }
 
   const showPasswordHandler = event => {
@@ -86,6 +142,7 @@ export const LoginPage = () => {
     } else {
       input.type = 'password'
     }
+    input.focus()
   }
 
   const AnimationLottie = () => {
@@ -186,26 +243,48 @@ export const LoginPage = () => {
               </div>
               <p className="text-separator">- OR -</p>
 
-              <div className="row">
-                <div className="input-field s6">
-                  <input
-                    id="first_name"
-                    type="text"
-                    name="first_name"
-                    className="form_input validate"
-                  />
-                  <label htmlFor="first_name">First Name</label>
-                </div>
-              </div>
+              {switchToLogin && (
+                <>
+                  <div className="row">
+                    <div className="input-field s6">
+                      <input
+                        id="firstName"
+                        type="text"
+                        name="firstName"
+                        className="form_input validate"
+                        ref={input_firstName}
+                        // defaultValue={form.firstName}
+                        // onChange={changeHandler}
+                      />
+                      <label htmlFor="firstName">First Name</label>
+                    </div>
+                  </div>
+
+                  <div className="row">
+                    <div className="input-field s6">
+                      <input
+                        id="lastName"
+                        type="text"
+                        name="lastName"
+                        className="form_input validate"
+                        ref={input_lastName}
+                        // onChange={changeHandler}
+                      />
+                      <label htmlFor="lastName">Last Name</label>
+                    </div>
+                  </div>
+                </>
+              )}
 
               <div className="row">
                 <div className="input-field s12">
                   <input
-                    onChange={changeHandler}
+                    // onChange={changeHandler}
                     id="email"
                     type="email"
                     name="email"
                     className="form_input validate"
+                    ref={input_email}
                   />
                   <label htmlFor="email">Email address</label>
                 </div>
@@ -218,7 +297,8 @@ export const LoginPage = () => {
                     type="password"
                     name="password"
                     className="form_input validate"
-                    onChange={changeHandler}
+                    ref={input_password}
+                    // onChange={changeHandler}
                   />
                   <label htmlFor="password">Password</label>
                   <span
@@ -232,23 +312,45 @@ export const LoginPage = () => {
               </div>
 
               <div className="bottom_block">
-                <div className="bottom_btn sign">
-                  <a
-                    onClick={loginHandler}
-                    className="sign_btn waves-effect waves-light btn-large"
-                  >
-                    Войти
-                  </a>
-                </div>
+                {!switchToLogin ? (
+                  <>
+                    <div className="bottom_btn sign">
+                      <a
+                        onClick={loginHandler}
+                        className="sign_btn waves-effect waves-light btn-large"
+                      >
+                        Войти
+                      </a>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="bottom_btn registr">
+                      <a
+                        onClick={registerHandler}
+                        className="sign_btn waves-effect waves-light btn-large"
+                      >
+                        Регистрация
+                      </a>
+                    </div>
+                  </>
+                )}
+              </div>
 
-                <div className="bottom_btn registr">
-                  <a
-                    onClick={registerHandler}
-                    className="sign_btn waves-effect waves-light btn-large"
-                  >
-                    Регистрация
-                  </a>
-                </div>
+              <div className="switch_login">
+                <span>
+                  {switchToLogin ? (
+                    <>
+                      Already have an account ?{' '}
+                      <a onClick={switchToLoginHandler}>Log in</a>
+                    </>
+                  ) : (
+                    <>
+                      Don't have an account ?{' '}
+                      <a onClick={switchToLoginHandler}>Register</a>
+                    </>
+                  )}
+                </span>
               </div>
             </form>
           </div>

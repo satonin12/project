@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import io from 'socket.io-client'
 import Peer from 'simple-peer'
 import styled from 'styled-components'
-import {useMessage} from '../hooks/message.hook'
+import { useMessage } from '../hooks/message.hook'
 
 const Container = styled.div`
   padding: 20px;
@@ -17,6 +17,12 @@ const StyledVideo = styled.video`
   height: 40%;
   width: 50%;
   border: 1px solid red;
+  background-color: #28282836;
+
+  // при наведении
+  &:hover {
+    border: 1px solid black;
+  }
 `
 
 const Video = props => {
@@ -26,9 +32,13 @@ const Video = props => {
     props.peer.on('stream', stream => {
       ref.current.srcObject = stream
     })
-  }, [])
+  }, [props.peer])
 
-  return <StyledVideo playsInline autoPlay ref={ref} />
+  return (
+    <div className="VideoContainer">
+      <StyledVideo playsInline autoPlay ref={ref} />
+    </div>
+  )
 }
 
 const videoConstraints = {
@@ -88,10 +98,15 @@ export const CallRoom = props => {
         const errMessage = err.message
         console.log(errMessage)
 
-        if(errMessage === 'The object can not be found here.') {
-          message('Не найдены медиа-устройства! Пожалуйста подключите web-камеру и микрофон и попробуйте ещё раз')
+        if (errMessage === 'The object can not be found here.') {
+          message(
+            'Не найдены медиа-устройства! Пожалуйста подключите web-камеру и микрофон и попробуйте ещё раз'
+          )
         }
       })
+      console.log(peers)
+    // ? FIXME useEffect прокидывает ошибку на неиспользование message и roomID
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   function createPeer(userToSignal, callerID, stream) {
@@ -132,7 +147,11 @@ export const CallRoom = props => {
     <Container>
       <StyledVideo muted ref={userVideo} autoPlay playsInline />
       {peers.map((peer, index) => {
-        return <Video key={index} peer={peer} />
+        return (
+          <div className="VideoContainer">
+            <Video key={index} peer={peer} />
+          </div>
+        )
       })}
     </Container>
   )

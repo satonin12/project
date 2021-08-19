@@ -46,11 +46,6 @@
   color: black;
   border-left: 2mm solid rgb(148, 148, 148);
  }
- .fgreen {
-  background: #fccde2;
-  /* border-bottom: 2mm solid rgb(13, 148, 92); */
- }
-
 #fname {
   width: 100%;
   padding: 12px 20px;
