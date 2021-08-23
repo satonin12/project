@@ -32,6 +32,10 @@ export const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(0)
   const [switchToLogin, setSwitchToLogin] = useState(true)
   const auth = useContext(AuthContext)
+
+  console.log(auth)
+  // debugger
+
   const message = useMessage()
   const { loading, request, error, clearError } = useHttp()
   const [form, setForm] = useState({
@@ -87,6 +91,7 @@ export const LoginPage = () => {
       const data = await request('/api/auth/register', 'POST', inputsForm)
       console.log(data)
       message(data.message)
+      // TODO: проверить если пользователь успешно создан => перевестьи в состояние Login
     } catch (e) {}
   }
 

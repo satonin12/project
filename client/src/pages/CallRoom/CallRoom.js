@@ -1,17 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useContext } from 'react'
 import io from 'socket.io-client'
 import Peer from 'simple-peer'
 import styled from 'styled-components'
-import { useMessage } from '../hooks/message.hook'
+import { useMessage } from '../../hooks/message.hook'
+import { AuthContext } from '../../context/AuthContext'
 
-const Container = styled.div`
-  padding: 20px;
-  display: flex;
-  height: 100vh;
-  width: 90%;
-  margin: auto;
-  flex-wrap: wrap;
-`
+import './index.css'
+import { CreateRoom } from '../../context/CreateRoom'
 
 const StyledVideo = styled.video`
   height: 40%;
@@ -34,11 +29,7 @@ const Video = props => {
     })
   }, [props.peer])
 
-  return (
-    <div className="VideoContainer">
-      <StyledVideo playsInline autoPlay ref={ref} />
-    </div>
-  )
+  return <StyledVideo playsInline autoPlay ref={ref} />
 }
 
 const videoConstraints = {
@@ -53,6 +44,11 @@ export const CallRoom = props => {
   const peersRef = useRef([])
   const roomID = props.match.params.roomID
   const message = useMessage()
+
+  const contextRoom = useContext(CreateRoom)
+
+  console.log(contextRoom)
+  const User = useContext(AuthContext)
 
   useEffect(() => {
     console.log(socketRef)
@@ -104,7 +100,7 @@ export const CallRoom = props => {
           )
         }
       })
-      console.log(peers)
+    console.log(peers)
     // ? FIXME useEffect прокидывает ошибку на неиспользование message и roomID
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -144,15 +140,60 @@ export const CallRoom = props => {
   }
 
   return (
-    <Container>
-      <StyledVideo muted ref={userVideo} autoPlay playsInline />
-      {peers.map((peer, index) => {
-        return (
-          <div className="VideoContainer">
-            <Video key={index} peer={peer} />
+    <>
+      <div className="title">{contextRoom.roomName}</div>
+      <div className="wrapperRoom">
+        <div className="Container">
+          <StyledVideo muted ref={userVideo} autoPlay playsInline />
+          {peers.map((peer, index) => {
+            return (
+              <div className="VideoContainer">
+                <div className="StyledVideoTest">
+                  <Video key={index} peer={peer} />
+                </div>
+
+                <div className="VideoContainer--title">
+                  {User.firstName} {User.lastName}
+                </div>
+              </div>
+            )
+          })}
+          {/* без (for tests) */}
+          {/* <div className="VideoContainer">
+            <div className="StyledVideoTest"></div>
+            <div className="VideoContainer--title">
+              {User.firstName} {User.lastName}
+            </div>
           </div>
-        )
-      })}
-    </Container>
+          <div className="VideoContainer">
+            <div className="StyledVideoTest"></div>
+            <div className="VideoContainer--title">
+              {User.firstName} {User.lastName}
+            </div>
+          </div>
+          <div className="VideoContainer">
+            <div className="StyledVideoTest"></div>
+            <div className="VideoContainer--title">
+              {User.firstName} {User.lastName}
+            </div>
+          </div>
+          <div className="VideoContainer">
+            <div className="StyledVideoTest"></div>
+            <div className="VideoContainer--title">
+              {User.firstName} {User.lastName}
+            </div>
+          </div>
+          <div className="VideoContainer">
+            <div className="StyledVideoTest"></div>
+            <div className="VideoContainer--title">
+              {User.firstName} {User.lastName}
+            </div>
+          </div> */}
+        </div>
+        <div className="ChatContainer">
+          В будущем здесь появится чат между участниками видеочата!
+        </div>
+      </div>
+    </>
   )
 }

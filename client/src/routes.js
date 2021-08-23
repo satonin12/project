@@ -3,13 +3,23 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import { LinksPage } from './pages/LinksPage'
 import { CreatePage } from './pages/CreatePage'
 import { LoginPage } from './pages/LoginPage/LoginPage'
-import { CallRoom } from './pages/CallRoom'
+import { CallRoom } from './pages/CallRoom/CallRoom'
 // import { AuthPage } from './pages/AuthPage'
 
-export const useRoutes = isAuthenticated => {
+import { CreateRoom } from './context/CreateRoom'
+import { useCreateRoom } from './hooks/createRoom.hook'
 
+export const useRoutes = isAuthenticated => {
+  const { roomName, roomID, createRoom } = useCreateRoom()
   if (isAuthenticated) {
     return (
+      <CreateRoom.Provider
+        value={{
+          roomName,
+          roomID,
+          createRoom,
+        }}
+      >
         <BrowserRouter>
           <Switch>
             <Route path="/links" exact component={LinksPage} />
@@ -18,6 +28,7 @@ export const useRoutes = isAuthenticated => {
             <Redirect to="/create" />
           </Switch>
         </BrowserRouter>
+      </CreateRoom.Provider>
     )
   }
 

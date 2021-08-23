@@ -71,12 +71,16 @@ header {
   width: auto;
   max-width: 230px;
   min-width: 206px;
-  top: 48px;
+  top: 5%;
+  left: 84%;
 
-  background: #AFBBE3;
-  border: 1px solid #DCE1E6;
+  background: #FDDAE8;
+  border: 1px solid #D0B4BF;
   padding: 4px 0px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+.top_profile_menu hr {
+  color: #80808054;
 }
 .top_profile_menu a:hover {
   background: #94adff;;

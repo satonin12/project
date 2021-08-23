@@ -6,14 +6,20 @@ import React, { useContext } from 'react'
 import { v1 as uuid } from 'uuid'
 import { AuthContext } from '../context/AuthContext'
 // import { useAuth } from '../hooks/auth.hook'
+import { CreateRoom } from '../context/CreateRoom'
 
 export const CreatePage = props => {
   // const contextUser = useContext(AuthContext)
   // console.log(contextUser)
+  const create = useContext(CreateRoom)
 
   const newRoomHandler = async () => {
     const id = uuid()
-    console.log(id)
+
+    const roomName = document.getElementById('fname')
+    const room = roomName.value
+
+    create.createRoom(id, room)
     props.history.push(`/room/${id}`)
   }
 

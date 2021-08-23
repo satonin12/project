@@ -1,0 +1,50 @@
+.title {
+  text-align: center;
+}
+.wrapperRoom {
+  display: flex;
+  flex-direction: row;
+}
+.Container {
+  padding: 20px;
+  /* margin: 0px 0px 40px; */
+
+  width: 70%;
+  height: 100vh;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+
+  background: #f78cb652;
+}
+.VideoContainer {
+  width: 500px;
+  height: 200px;
+}
+
+.VideoContainer:hover .VideoContainer--title {
+  visibility: initial;
+}
+
+.VideoContainer .VideoContainer--title {
+  visibility: hidden;
+}
+.StyledVideoTest {
+  width: 500px;
+  height: 210px;
+  background-color: #28282836;
+}
+.StyledVideoTest:hover {
+  border: 1px solid black;
+}
+.ChatContainer {
+  width: 30%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 2px solid gray;
+}
